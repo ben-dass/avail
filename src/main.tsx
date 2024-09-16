@@ -4,38 +4,55 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "@/src/App.tsx";
-import ErrorPage from "@/src/pages/ErrorPage.tsx";
-import AddMovies from "@/src/pages/AddMoviesPage.tsx";
-import GenresPage from "@/src/pages/GenresPage.tsx";
-import GraphQLPage from "@/src/pages/GraphQLPage.tsx";
-import ManageCataloguePage from "@/src/pages/ManageCataloguePage.tsx";
-import MoviesPage from "@/src/pages/MoviesPage.tsx";
+import NotFound from "@/src/pages/NotFound.tsx";
+import AddMovies from "@/src/pages/AddMovies.tsx";
+import Genres from "@/src/pages/Genres.tsx";
+import GraphQL from "@/src/pages/GraphQL.tsx";
+import ManageCatalogue from "@/src/pages/ManageCatalogue.tsx";
+import Movies from "@/src/pages/Movies/Movies.tsx";
+import Home from "@/src/pages/Home.tsx";
+import Login from "@/src/pages/Login.tsx";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <App />,
-		errorElement: <ErrorPage />,
 		children: [
 			{
-				path: "/addMovies",
-				element: <AddMovies />,
+				children: [
+					{
+						index: true,
+						element: <Home />,
+					},
+					{
+						path: "/addMovies",
+						element: <AddMovies />,
+					},
+					{
+						path: "/genres",
+						element: <Genres />,
+					},
+					{
+						path: "/graphql",
+						element: <GraphQL />,
+					},
+					{
+						path: "/manageCatalogue",
+						element: <ManageCatalogue />,
+					},
+					{
+						path: "/movies",
+						element: <Movies />,
+					},
+					{
+						path: "/login",
+						element: <Login />,
+					},
+				],
 			},
 			{
-				path: "/genres",
-				element: <GenresPage />,
-			},
-			{
-				path: "/graphql",
-				element: <GraphQLPage />,
-			},
-			{
-				path: "/manageCatalogue",
-				element: <ManageCataloguePage />,
-			},
-			{
-				path: "/movies",
-				element: <MoviesPage />,
+				path: "*",
+				element: <NotFound />,
 			},
 		],
 	},
