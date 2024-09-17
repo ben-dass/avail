@@ -11,7 +11,7 @@ const App = () => {
 						AVAIL
 					</h1>
 					<NavLink
-						to="/login"
+						to="/auth"
 						className="mr-[1rem] text-sm text-gray-400 hover:text-white hover:underline"
 					>
 						Login
