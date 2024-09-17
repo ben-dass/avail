@@ -1,5 +1,9 @@
+import { useAppSelector } from "@/src/store.ts";
+
 const Home = () => {
-	return <div>Home</div>;
+	const authState = useAppSelector((state) => state.auth);
+
+	return <div>LoggedIn Status: {authState.loggedIn.toString()}</div>;
 };
 
 export default Home;

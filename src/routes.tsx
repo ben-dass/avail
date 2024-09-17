@@ -8,6 +8,11 @@ import ManageCatalogue from "@/src/pages/ManageCatalogue.tsx";
 import Movies from "@/src/pages/Movies/Movies.tsx";
 import NotFound from "@/src/pages/NotFound.tsx";
 import Auth from "@/src/pages/Auth/Auth.tsx";
+import Movie from "@/src/pages/Movies/Movie.tsx";
+import { store } from "@/src/store.ts";
+import ProtectedRoute from "@/src/pages/Auth/ProtectedRoute.tsx";
+
+const authState = store.getState().auth;
 
 const router = createBrowserRouter([
 	{
@@ -21,28 +26,50 @@ const router = createBrowserRouter([
 						element: <Home />,
 					},
 					{
-						path: "/addMovies",
-						element: <AddMovies />,
+						path: "/movies",
+						element: <Movies />,
+					},
+					{
+						path: "/movies/:id",
+						element: <Movie />,
 					},
 					{
 						path: "/genres",
 						element: <Genres />,
 					},
 					{
+						path: "/auth",
+						element: <Auth />,
+					},
+					{
+						path: "/addMovies",
+						element: (
+							<ProtectedRoute
+								isAuthenticated={authState.loggedIn}
+							>
+								<AddMovies />
+							</ProtectedRoute>
+						),
+					},
+					{
 						path: "/graphql",
-						element: <GraphQL />,
+						element: (
+							<ProtectedRoute
+								isAuthenticated={authState.loggedIn}
+							>
+								<GraphQL />
+							</ProtectedRoute>
+						),
 					},
 					{
 						path: "/manageCatalogue",
-						element: <ManageCatalogue />,
-					},
-					{
-						path: "/movies",
-						element: <Movies />,
-					},
-					{
-						path: "/auth",
-						element: <Auth />,
+						element: (
+							<ProtectedRoute
+								isAuthenticated={authState.loggedIn}
+							>
+								<ManageCatalogue />
+							</ProtectedRoute>
+						),
 					},
 				],
 			},

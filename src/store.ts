@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import authReducer from "@/src/pages/Auth/authSlice.ts";
+import moviesReducer from "@/src/pages/Movies/moviesSlice.ts";
 
 export const store = configureStore({
-	reducer: { auth: authReducer },
+	reducer: { auth: authReducer, movies: moviesReducer },
 });
 
 export type RootState = ReturnType<typeof store.dispatch>;
