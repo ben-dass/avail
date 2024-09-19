@@ -1,4 +1,4 @@
-import LeftNav from "@/src/components/LeftNav/LeftNav.tsx";
+import LeftNav from "@/src/components/left-nav/LeftNav.tsx";
 import Content from "@/src/components/Content.tsx";
 import TopNav from "@/src/components/TopNav.tsx";
 

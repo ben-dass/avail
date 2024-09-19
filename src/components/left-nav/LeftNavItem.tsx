@@ -1,14 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { leftNavItem } from "@/src/components/LeftNav/LeftNav.tsx";
+import { ILeftNavItem } from "@/src/components/left-nav/LeftNav.tsx";
 
-interface LeftNavItemProps {
-	item: leftNavItem;
+interface ILeftNavItemProps {
+	item: ILeftNavItem;
 }
 
-const LeftNavItem: React.FC<LeftNavItemProps> = ({
+const LeftNavItem: React.FC<ILeftNavItemProps> = ({
 	item,
-}: LeftNavItemProps) => {
+}: ILeftNavItemProps) => {
 	return (
 		<li className="w-[10rem]">
 			<NavLink

@@ -5,12 +5,12 @@ import AddMovies from "@/src/pages/AddMovies.tsx";
 import Genres from "@/src/pages/Genres.tsx";
 import GraphQL from "@/src/pages/GraphQL.tsx";
 import ManageCatalogue from "@/src/pages/ManageCatalogue.tsx";
-import Movies from "@/src/pages/Movies/Movies.tsx";
+import Movies from "@/src/pages/movies/Movies.tsx";
 import NotFound from "@/src/pages/NotFound.tsx";
-import Auth from "@/src/pages/Auth/Auth.tsx";
-import Movie from "@/src/pages/Movies/Movie.tsx";
+import Auth from "@/src/pages/auth/Auth.tsx";
+import Movie from "@/src/pages/movies/Movie.tsx";
 import { store } from "@/src/store.ts";
-import ProtectedRoute from "@/src/pages/Auth/ProtectedRoute.tsx";
+import ProtectedRoute from "@/src/pages/auth/ProtectedRoute.tsx";
 
 const authState = store.getState().auth;
 

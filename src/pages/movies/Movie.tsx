@@ -1,10 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { IMovie } from "@/src/pages/movies/moviesSlice.ts";
 
 const Movie = () => {
 	const { id } = useParams();
 
-	const [movie, setMovie] = useState({});
+	const [movie, setMovie] = useState<IMovie>({
+		id: null,
+		title: "",
+		release_date: "",
+		runtime: null,
+		mpaa_rating: "",
+		description: "",
+	});
 	const [runtime, setRuntime] = useState<string>("");
 
 	useEffect(() => {
@@ -23,7 +31,7 @@ const Movie = () => {
 
 	const breakdownRuntime = (runtime: number) => {
 		const hoursAmount = Math.floor(runtime / 60);
-		let hoursString = "";
+		let hoursString;
 		if (hoursAmount < 2) {
 			hoursString = `${hoursAmount} hour`;
 		} else {

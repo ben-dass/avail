@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Movie } from "@/src/pages/Movies/moviesSlice.ts";
 import {
 	Table,
 	TableBody,
@@ -9,11 +8,14 @@ import {
 	TableRow,
 } from "@/components/ui/table.tsx";
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "@/src/store.ts";
+import { IRootState, useAppSelector } from "@/src/store.ts";
+import { IMovie, IMoviesState } from "@/src/pages/movies/moviesSlice.ts";
 
 const Movies = () => {
-	const [movies, setMovies] = useState<Movie[]>([]);
-	const moviesState = useAppSelector((state) => state.movies);
+	const [movies, setMovies] = useState<IMovie[]>([]);
+	const moviesState = useAppSelector<IRootState, IMoviesState>(
+		(state) => state.movies,
+	);
 
 	useEffect(() => {
 		setMovies(moviesState.movies);

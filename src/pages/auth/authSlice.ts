@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface AuthState {
+export interface IAuthState {
 	loggedIn: boolean;
 	username: string;
 }
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
 	loggedIn: false,
 	username: "",
 };

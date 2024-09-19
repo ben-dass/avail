@@ -1,13 +1,13 @@
-import LeftNavItem from "@/src/components/LeftNav/LeftNavItem.tsx";
+import LeftNavItem from "./LeftNavItem.tsx";
 
-export interface leftNavItem {
+export interface ILeftNavItem {
 	name: string;
 	url: string;
 	isProtectedRoute: boolean;
 }
 
 const LeftNav = () => {
-	const leftNavItems: leftNavItem[] = [
+	const leftNavItems: ILeftNavItem[] = [
 		{ name: "Home", url: "/", isProtectedRoute: false },
 		{ name: "Movies", url: "/movies", isProtectedRoute: false },
 		{ name: "Genres", url: "/genres", isProtectedRoute: false },

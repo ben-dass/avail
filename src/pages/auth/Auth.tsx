@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/src/store.ts";
-import { logIn, logOut } from "@/src/pages/Auth/authSlice.ts";
+import { logIn, logOut } from "./authSlice.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { useState } from "react";

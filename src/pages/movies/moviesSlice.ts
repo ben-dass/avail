@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface MovieInterface {
-	id: number;
+export interface IMovie {
+	id: number | null;
 	title: string;
 	release_date: string;
-	runtime: number;
+	runtime: number | null;
 	mpaa_rating: string;
 	description: string;
 }
 
-export interface MoviesState {
-	movies: MovieInterface[];
+export interface IMoviesState {
+	movies: IMovie[];
 }
 
-export const initialState: MoviesState = {
+export const initialState: IMoviesState = {
 	movies: [
 		{
 			id: 1,
@@ -40,8 +40,8 @@ export const moviesSlice = createSlice({
 	name: "movies",
 	initialState,
 	reducers: {
-		addMovie: (state, action) => {},
-		removeMovie: (state, action) => {},
+		addMovie: () => {},
+		removeMovie: () => {},
 	},
 });
 
