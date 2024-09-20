@@ -14,3 +14,4 @@ Request Movies & TV Shows to be added to Plex.
 ## BE Stack
 
 1. Golang
+2. Chi
