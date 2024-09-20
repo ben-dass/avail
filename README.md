@@ -1,5 +1,7 @@
 # AVAIL
 
+Request Movies & TV Shows to be added to Plex.
+
 ## FE Stack
 
 1. Vite
