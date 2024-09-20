@@ -1,4 +1,4 @@
-import { useAppSelector } from "@/src/store.ts";
+import { useAppSelector } from "@/lib/store.ts";
 
 const Home = () => {
 	const authState = useAppSelector((state) => state.auth);

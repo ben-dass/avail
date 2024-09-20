@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 
 import "./index.css";
 import { RouterProvider } from "react-router-dom";
-import router from "@/src/routes.tsx";
+import router from "@/lib/routes.tsx";
 import { Provider } from "react-redux";
-import { store } from "@/src/store.ts";
+import { store } from "@/lib/store.ts";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>

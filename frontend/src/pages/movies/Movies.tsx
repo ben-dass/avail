@@ -8,7 +8,7 @@ import {
 	TableRow,
 } from "@/components/ui/table.tsx";
 import { NavLink } from "react-router-dom";
-import { IRootState, useAppSelector } from "@/src/store.ts";
+import { IRootState, useAppSelector } from "@/lib/store.ts";
 import { IMovie, IMoviesState } from "@/src/pages/movies/moviesSlice.ts";
 
 const Movies = () => {

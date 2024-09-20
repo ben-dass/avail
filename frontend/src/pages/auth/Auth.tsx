@@ -1,14 +1,26 @@
-import { useAppDispatch, useAppSelector } from "@/src/store.ts";
+import { useAppDispatch, useAppSelector } from "@/lib/store.ts";
 import { logIn, logOut } from "./authSlice.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
 	const dispatch = useAppDispatch();
 	const authState = useAppSelector((state) => state.auth);
 
 	const [username, setUsername] = useState("");
+
+	const navigate = useNavigate();
+
+	const handleLogin = () => {
+		dispatch(logIn(username));
+		navigate("/");
+	};
+
+	const handleLogout = () => {
+		dispatch(logOut());
+	};
 
 	return (
 		<div className="flex h-full w-full items-center justify-center">
@@ -30,7 +42,7 @@ const Auth = () => {
 				{authState.loggedIn ? (
 					<Button
 						type="submit"
-						onClick={() => dispatch(logOut())}
+						onClick={handleLogout}
 						className="mt-2 bg-slate-700 transition duration-300 ease-in-out hover:bg-slate-600"
 					>
 						Logout
@@ -38,7 +50,7 @@ const Auth = () => {
 				) : (
 					<Button
 						type="submit"
-						onClick={() => dispatch(logIn(username))}
+						onClick={handleLogin}
 						className="mt-2 bg-slate-700 transition duration-300 ease-in-out hover:bg-slate-600"
 					>
 						Login

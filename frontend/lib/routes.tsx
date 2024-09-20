@@ -9,10 +9,7 @@ import Movies from "@/src/pages/movies/Movies.tsx";
 import NotFound from "@/src/pages/NotFound.tsx";
 import Auth from "@/src/pages/auth/Auth.tsx";
 import Movie from "@/src/pages/movies/Movie.tsx";
-import { store } from "@/src/store.ts";
 import ProtectedRoute from "@/src/pages/auth/ProtectedRoute.tsx";
-
-const authState = store.getState().auth;
 
 const router = createBrowserRouter([
 	{
@@ -44,9 +41,7 @@ const router = createBrowserRouter([
 					{
 						path: "/addMovies",
 						element: (
-							<ProtectedRoute
-								isAuthenticated={authState.loggedIn}
-							>
+							<ProtectedRoute>
 								<AddMovies />
 							</ProtectedRoute>
 						),
@@ -54,9 +49,7 @@ const router = createBrowserRouter([
 					{
 						path: "/graphql",
 						element: (
-							<ProtectedRoute
-								isAuthenticated={authState.loggedIn}
-							>
+							<ProtectedRoute>
 								<GraphQL />
 							</ProtectedRoute>
 						),
@@ -64,9 +57,7 @@ const router = createBrowserRouter([
 					{
 						path: "/manageCatalogue",
 						element: (
-							<ProtectedRoute
-								isAuthenticated={authState.loggedIn}
-							>
+							<ProtectedRoute>
 								<ManageCatalogue />
 							</ProtectedRoute>
 						),

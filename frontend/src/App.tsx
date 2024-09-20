@@ -1,6 +1,6 @@
-import LeftNav from "@/src/components/left-nav/LeftNav.tsx";
-import Content from "@/src/components/Content.tsx";
-import TopNav from "@/src/components/TopNav.tsx";
+import LeftNav from "@/components/local/left-nav/LeftNav.tsx";
+import Content from "@/components/local/Content.tsx";
+import TopNav from "@/components/local/TopNav.tsx";
 
 const App = () => {
 	return (
