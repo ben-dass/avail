@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+// import { apiSlice } from "@src/store/apiSlice.ts";
+// import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface IMovie {
 	id: number | null;
@@ -9,31 +11,16 @@ export interface IMovie {
 	description: string;
 }
 
-export interface IMoviesState {
+export interface IMovies {
+	loading: boolean;
+	error: string;
 	movies: IMovie[];
 }
 
-export const initialState: IMoviesState = {
-	movies: [
-		{
-			id: 1,
-			title: "Highlander",
-			release_date: "1986-03-07",
-			runtime: 116,
-			mpaa_rating: "R",
-			description:
-				'An immortal Scottish swordsman must confront the last of his immortal opponents, a murderously brutal barbarian who lusts for the fabled "Prize".',
-		},
-		{
-			id: 2,
-			title: "Raiders of the Lost Ark",
-			release_date: "1981-06-12",
-			runtime: 115,
-			mpaa_rating: "PG-13",
-			description:
-				"In 1936, archaeologists and adventurers of the U.S. government hired Indiana Jones to find the Ark of the Covenant before the Nazis could obtain its extraordinary powers.",
-		},
-	],
+const initialState: IMovies = {
+	loading: false,
+	error: "",
+	movies: [],
 };
 
 export const moviesSlice = createSlice({
@@ -45,5 +32,16 @@ export const moviesSlice = createSlice({
 	},
 });
 
+// export const moviesAPISlice = apiSlice.injectEndpoints({
+// 	endpoints: (builder) => ({
+// 		getMovies: builder.query({
+// 			query: () => ({
+// 				url: "http://localhost:8080/movies",
+// 			}),
+// 		}),
+// 	}),
+// });
+
 export const { addMovie, removeMovie } = moviesSlice.actions;
+// export const { useGetMoviesQuery } = moviesAPISlice;
 export default moviesSlice.reducer;

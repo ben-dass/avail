@@ -1,7 +1,7 @@
-import { useAppDispatch, useAppSelector } from "@/lib/store.ts";
+import { useAppDispatch, useAppSelector } from "@src/store/store.ts";
 import { logIn, logOut } from "./authSlice.ts";
-import { Button } from "@/components/ui/button.tsx";
-import { Input } from "@/components/ui/input.tsx";
+import { Button } from "@components/ui/button.tsx";
+import { Input } from "@components/ui/input.tsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

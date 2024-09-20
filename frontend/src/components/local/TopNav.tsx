@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "@/lib/store.ts";
-import { logOut } from "@/src/pages/auth/authSlice.ts";
+import { useAppDispatch, useAppSelector } from "@src/store/store.ts";
+import { logOut } from "@pages/auth/authSlice.ts";
 
 const TopNav = () => {
 	const dispatch = useAppDispatch();

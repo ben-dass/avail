@@ -1,5 +1,5 @@
 import LeftNavItem from "./LeftNavItem.tsx";
-import { useAppSelector } from "@/lib/store.ts";
+import { useAppSelector } from "@src/store/store.ts";
 
 export interface ILeftNavItem {
 	name: string;

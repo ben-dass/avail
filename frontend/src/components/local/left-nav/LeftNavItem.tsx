@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ILeftNavItem } from "@/components/local/left-nav/LeftNav.tsx";
+import { ILeftNavItem } from "@components/local/left-nav/LeftNav.tsx";
 
 interface ILeftNavItemProps {
 	item: ILeftNavItem;
