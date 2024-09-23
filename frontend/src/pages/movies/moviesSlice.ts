@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { apiSlice } from "@src/store/apiSlice.ts";
-// import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface IMovie {
 	id: number | null;
@@ -32,16 +30,5 @@ export const moviesSlice = createSlice({
 	},
 });
 
-// export const moviesAPISlice = apiSlice.injectEndpoints({
-// 	endpoints: (builder) => ({
-// 		getMovies: builder.query({
-// 			query: () => ({
-// 				url: "http://localhost:8080/movies",
-// 			}),
-// 		}),
-// 	}),
-// });
-
 export const { addMovie, removeMovie } = moviesSlice.actions;
-// export const { useGetMoviesQuery } = moviesAPISlice;
 export default moviesSlice.reducer;

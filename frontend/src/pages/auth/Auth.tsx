@@ -1,20 +1,29 @@
 import { useAppDispatch, useAppSelector } from "@src/store/store.ts";
-import { logIn, logOut } from "./authSlice.ts";
+import { logOut } from "./authSlice.ts";
 import { Button } from "@components/ui/button.tsx";
 import { Input } from "@components/ui/input.tsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLoginMutation } from "@src/store/apiSlice.ts";
 
 const Auth = () => {
 	const dispatch = useAppDispatch();
 	const authState = useAppSelector((state) => state.auth);
+	const [login] = useLoginMutation();
 
 	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
 
 	const navigate = useNavigate();
 
-	const handleLogin = () => {
-		dispatch(logIn(username));
+	const handleLogin = async () => {
+		const payload = {
+			email: username,
+			password: password,
+		};
+
+		const result = await login(JSON.stringify(payload)).unwrap();
+		console.log("Auth: ", result);
 		navigate("/");
 	};
 
@@ -36,7 +45,7 @@ const Auth = () => {
 					type="password"
 					placeholder="Password"
 					name="username"
-					// onChange={(e) => setUsername(e.target.value)}
+					onChange={(e) => setPassword(e.target.value)}
 					className="active:border-gay-100 focus:border-1 border-gray-600 transition duration-300 ease-in-out hover:border-gray-300 focus:border-gray-100"
 				/>
 				{authState.loggedIn ? (

@@ -1,11 +1,8 @@
 package main
 
 import (
-	models "backend"
-	"encoding/json"
-	"fmt"
+	"errors"
 	"net/http"
-	"time"
 )
 
 func (app *appConfig) Home(w http.ResponseWriter, r *http.Request) {
@@ -19,52 +16,62 @@ func (app *appConfig) Home(w http.ResponseWriter, r *http.Request) {
 		Version: "1.0.0",
 	}
 
-	out, err := json.Marshal(payload)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write(out)
+	_ = app.writeJSON(w, http.StatusOK, payload)
 }
 
 func (app *appConfig) AllMovies(w http.ResponseWriter, r *http.Request) {
-	var movies []models.Movie
-
-	rd, _ := time.Parse(`2006-01-02`, "1986-03-07")
-	highlander := models.Movie{
-		ID:          1,
-		Title:       "Highlander",
-		ReleaseDate: rd,
-		MPAARating:  "R",
-		Runtime:     116,
-		Description: "An immortal Scottish swordsman must confront the last of his immortal opponents, a murderously brutal barbarian who lusts for the fabled \"Prize\".",
-		CreatedAt:   time.Now(),
-		UpdatedAt:   time.Now(),
-	}
-
-	rd, _ = time.Parse(`2006-01-02`, "1981-06-12")
-	rotla := models.Movie{
-		ID:          2,
-		Title:       "Raiders of the Lost Ark",
-		ReleaseDate: rd,
-		MPAARating:  "PG-13",
-		Runtime:     115,
-		Description: "In 1936, archaeologists and adventurers of the U.S. government hired Indiana Jones to find the Ark of the Covenant before the Nazis could obtain its extraordinary powers.",
-		CreatedAt:   time.Now(),
-		UpdatedAt:   time.Now(),
-	}
-
-	movies = append(movies, highlander)
-	movies = append(movies, rotla)
-
-	out, err := json.Marshal(movies)
+	movies, err := app.DB.AllMovies()
 	if err != nil {
-		fmt.Println(err)
+		_ = app.errorJSON(w, err)
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write(out)
+	_ = app.writeJSON(w, http.StatusOK, movies)
+}
+
+func (app *appConfig) Authenticate(w http.ResponseWriter, r *http.Request) {
+
+	// read JSON payload
+	var requestPayload struct {
+		Email    string `json:"email"`
+		Password string `json:"password"`
+	}
+
+	err := app.readJSON(w, r, &requestPayload)
+	if err != nil {
+		_ = app.errorJSON(w, err, http.StatusBadRequest)
+		return
+	}
+
+	// validate user against db
+	user, err := app.DB.GetUserByEmail(requestPayload.Email)
+	if err != nil {
+		_ = app.errorJSON(w, errors.New("invalid credentials"), http.StatusBadRequest)
+		return
+	}
+
+	// check password
+	valid, err := user.PasswordMatches(requestPayload.Password)
+	if err != nil || !valid {
+		_ = app.errorJSON(w, errors.New("invalid credentials"), http.StatusBadRequest)
+		return
+	}
+
+	// create a jwt user
+	u := JWTUser{
+		ID:        user.ID,
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+	}
+
+	// generate tokens
+	tokens, err := app.auth.GenerateTokenPair(&u)
+	if err != nil {
+		_ = app.errorJSON(w, err)
+		return
+	}
+
+	refreshCookie := app.auth.GetRefreshCookie(tokens.Token)
+	http.SetCookie(w, refreshCookie)
+
+	_ = app.writeJSON(w, http.StatusAccepted, tokens)
 }

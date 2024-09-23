@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export interface ILoginCredentials {
+	email: string;
+	password: string;
+}
+
 export interface IAuthState {
 	loggedIn: boolean;
 	username: string;

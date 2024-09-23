@@ -19,11 +19,12 @@ func (app *appConfig) routes() http.Handler {
 	})
 
 	mux.Use(corsOptions.Handler)
-
 	mux.Use(middleware.Recoverer)
 
 	mux.Get("/", app.Home)
 	mux.Get("/movies", app.AllMovies)
+
+	mux.Post("/authenticate", app.Authenticate)
 
 	return mux
 }
