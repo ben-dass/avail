@@ -16,7 +16,7 @@ const LeftNav = () => {
 		{ name: "Genres", url: "/genres", isProtectedRoute: false },
 	];
 
-	if (authState.loggedIn) {
+	if (authState.email) {
 		leftNavItems.push(
 			{
 				name: "Add Movies",

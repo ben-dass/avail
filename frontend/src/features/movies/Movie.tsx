@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { IMovie } from "@pages/movies/moviesSlice.ts";
+import { IMovie } from "@src/features/movies/moviesSlice.ts";
 
 const Movie = () => {
 	const { id } = useParams();

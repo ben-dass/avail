@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import authReducer from "@pages/auth/authSlice.ts";
-import moviesReducer from "@pages/movies/moviesSlice.ts";
+import authReducer from "@src/features/auth/authSlice.ts";
+import moviesReducer from "@src/features/movies/moviesSlice.ts";
 import { apiSlice } from "@src/store/apiSlice.ts";
 
 export const store = configureStore({

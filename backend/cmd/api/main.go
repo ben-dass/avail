@@ -17,7 +17,7 @@ type appConfig struct {
 	DSN          string
 	Domain       string
 	DB           repository.DBRepo
-	auth         Auth
+	auth         Login
 	JWTSecret    string
 	JWTIssuer    string
 	JWTAudience  string
@@ -47,8 +47,8 @@ func main() {
 		_ = connection.Close()
 	}(app.DB.Connection())
 
-	// configure Auth
-	app.auth = Auth{
+	// configure Login
+	app.auth = Login{
 		Issuer:        app.JWTIssuer,
 		Audience:      app.JWTAudience,
 		Secret:        app.JWTSecret,

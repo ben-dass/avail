@@ -9,7 +9,7 @@ interface IProtectedRouteProps {
 const ProtectedRoute = ({ children }: IProtectedRouteProps) => {
 	const authState = useAppSelector((state) => state.auth);
 
-	return authState.loggedIn ? children : <Navigate to="/auth" />;
+	return authState.username ? children : <Navigate to="/auth" />;
 };
 
 export default ProtectedRoute;
