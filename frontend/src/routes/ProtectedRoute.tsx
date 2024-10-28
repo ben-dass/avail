@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import React from "react";
-import { useAppSelector } from "@src/store/store.ts";
+import { useAppSelector } from "@src/app/store.ts";
 
 interface IProtectedRouteProps {
 	children: React.ReactNode;
@@ -9,7 +9,7 @@ interface IProtectedRouteProps {
 const ProtectedRoute = ({ children }: IProtectedRouteProps) => {
 	const authState = useAppSelector((state) => state.auth);
 
-	return authState.username ? children : <Navigate to="/auth" />;
+	return authState.email ? children : <Navigate to="/auth" />;
 };
 
 export default ProtectedRoute;

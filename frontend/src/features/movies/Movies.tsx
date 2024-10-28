@@ -8,8 +8,8 @@ import {
 } from "@components/ui/table.tsx";
 import { NavLink } from "react-router-dom";
 import { IMovie } from "./moviesSlice.ts";
-import { useGetMoviesQuery } from "@src/store/apiSlice.ts";
 import React from "react";
+import { useGetMoviesQuery } from "@src/app/services/movies.ts";
 
 const Movies = () => {
 	const { data = [], isLoading, isSuccess, isError } = useGetMoviesQuery();

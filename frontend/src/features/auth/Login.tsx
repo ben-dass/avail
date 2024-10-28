@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLoginMutation } from "@src/features/auth/authAPISlice.ts";
-import { useAppDispatch } from "@src/store/store.ts";
+import { useLoginMutation } from "@src/app/services/auth";
+import { useAppDispatch } from "@src/app/store.ts";
 
 import { Button } from "@components/ui/button.tsx";
 import { Input } from "@components/ui/input.tsx";

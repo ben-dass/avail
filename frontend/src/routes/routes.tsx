@@ -6,7 +6,7 @@ import Genres from "@src/features/Genres.tsx";
 import GraphQL from "@src/features/GraphQL.tsx";
 import ManageCatalogue from "@src/features/ManageCatalogue.tsx";
 import Movies from "@src/features/movies/Movies.tsx";
-import NotFound from "@src/features/NotFound.tsx";
+import NotFound from "@components/local/NotFound.tsx";
 import Login from "@src/features/auth/Login.tsx";
 import Movie from "@src/features/movies/Movie.tsx";
 import ProtectedRoute from "@src/routes/ProtectedRoute.tsx";

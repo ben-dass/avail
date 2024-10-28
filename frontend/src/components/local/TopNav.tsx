@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "@src/store/store.ts";
+import { useAppSelector } from "@src/app/store.ts";
 import { selectCurrentUser } from "@src/features/auth/authSlice.ts";
 
 const TopNav = () => {

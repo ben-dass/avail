@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "@src/store/store.ts";
+import { RootState } from "@src/app/store.ts";
 
 export interface IAuthState {
 	email: string | null;
