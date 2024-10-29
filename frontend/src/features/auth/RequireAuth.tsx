@@ -1,5 +1,5 @@
 import { selectCurrentToken } from "@src/features/auth/authSlice.ts";
-import { useAppSelector } from "@src/store/store.ts";
+import { useAppSelector } from "@src/app/store.ts";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const RequireAuth = () => {

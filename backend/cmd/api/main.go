@@ -18,7 +18,7 @@ type appConfig struct {
     DSN          string
     Domain       string
     DB           repository.DBRepo
-    auth         Login
+    auth         Auth
     JWTSecret    string
     JWTIssuer    string
     JWTAudience  string
@@ -29,7 +29,7 @@ func main() {
     var app appConfig
     
     // read from cmd line
-    flag.StringVar(&app.DSN, "dsn", "host=localhost port=5432 user=postgres password=postgres dbname=movies sslmode=disable timezone=UTC connect_timeout=5", "Postgres connection string")
+    flag.StringVar(&app.DSN, "dsn", "host=localhost port=5432 user=postgres password=postgres 		dbname=movies sslmode=disable timezone=UTC connect_timeout=5", "Postgres connection string")
     flag.StringVar(&app.JWTSecret, "jwt-secret", "verysecret", "signing secret")
     flag.StringVar(&app.JWTIssuer, "jwt-issuer", "example.com", "signing issuer")
     flag.StringVar(&app.JWTAudience, "jwt-audience", "example.com", "signing audience")
@@ -49,11 +49,11 @@ func main() {
     }(app.DB.Connection())
     
     // configure Login
-    app.auth = Login{
+    app.auth = Auth{
         Issuer:        app.JWTIssuer,
         Audience:      app.JWTAudience,
         Secret:        app.JWTSecret,
-        TokenExpiry:   time.Minute * 15,
+        TokenExpiry:   time.Minute * 10,
         RefreshExpiry: time.Hour * 24,
         CookiePath:    "/",
         CookieName:    "__Host-refresh_token",

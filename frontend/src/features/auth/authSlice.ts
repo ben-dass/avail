@@ -3,12 +3,14 @@ import { RootState } from "@src/app/store.ts";
 
 export interface IAuthState {
 	email: string | null;
-	token: string | null;
+	access_token: string | null;
+	refresh_token: string | null;
 }
 
 const initialState: IAuthState = {
 	email: null,
-	token: null,
+	access_token: null,
+	refresh_token: null,
 };
 
 export const authSlice = createSlice({
@@ -16,19 +18,19 @@ export const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setCredentials: (state, action: PayloadAction<IAuthState>) => {
-			const { email, token } = action.payload;
+			const { email, access_token, refresh_token } = action.payload;
 			state.email = email;
-			state.token = token;
-		},
-		logout: (state) => {
-			state.email = null;
-			state.token = null;
+			state.access_token = access_token;
+			state.refresh_token = refresh_token;
 		},
 	},
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials } = authSlice.actions;
 export default authSlice.reducer;
 
 export const selectCurrentUser = (state: RootState) => state.auth.email;
-export const selectCurrentToken = (state: RootState) => state.auth.token;
+export const selectCurrentAccessToken = (state: RootState) =>
+	state.auth.access_token;
+export const selectCurrentRefreshToken = (state: RootState) =>
+	state.auth.refresh_token;

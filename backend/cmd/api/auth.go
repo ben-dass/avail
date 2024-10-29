@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/golang-jwt/jwt/v4"
 	"net/http"
 	"time"
+
+	"github.com/golang-jwt/jwt/v4"
 )
 
-type Login struct {
+type Auth struct {
 	Issuer        string
 	Audience      string
 	Secret        string
@@ -33,7 +34,7 @@ type Claims struct {
 	jwt.RegisteredClaims
 }
 
-func (a *Login) GenerateTokenPair(user *JWTUser) (TokenPairs, error) {
+func (a *Auth) GenerateTokenPair(user *JWTUser) (TokenPairs, error) {
 
 	// Create a token
 	token := jwt.New(jwt.SigningMethodHS256)
@@ -80,7 +81,7 @@ func (a *Login) GenerateTokenPair(user *JWTUser) (TokenPairs, error) {
 	return tokenPairs, nil
 }
 
-func (a *Login) GetRefreshCookie(refreshToken string) *http.Cookie {
+func (a *Auth) GetRefreshCookie(refreshToken string) *http.Cookie {
 	return &http.Cookie{
 		Name:     a.CookieName,
 		Path:     a.CookiePath,
@@ -94,7 +95,7 @@ func (a *Login) GetRefreshCookie(refreshToken string) *http.Cookie {
 	}
 }
 
-func (a *Login) GetExpiredRefreshCookie() *http.Cookie {
+func (a *Auth) GetExpiredRefreshCookie() *http.Cookie {
 	return &http.Cookie{
 		Name:     a.CookieName,
 		Path:     a.CookiePath,
