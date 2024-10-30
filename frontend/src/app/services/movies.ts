@@ -6,7 +6,16 @@ export const moviesApiSlice = apiSlice.injectEndpoints({
 		getMovies: builder.query<IMovie[], void>({
 			query: () => "/movies",
 		}),
+		getCurrentCatalog: builder.query( {
+			query: () => (
+				{
+					url: "/admin/manage-catalog",
+					method: "GET",
+					credentials: "include",
+				}
+			),
+		} ),
 	}),
 });
 
-export const { useGetMoviesQuery } = moviesApiSlice;
+export const { useGetMoviesQuery, useGetCurrentCatalogQuery } = moviesApiSlice;

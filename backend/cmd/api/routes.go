@@ -29,5 +29,10 @@ func (app *appConfig) routes() http.Handler {
     mux.Post("/logout", app.Logout)
     mux.Post("/authenticate", app.Authenticate)
     
+    mux.Route("/admin", func(mux chi.Router) {
+        mux.Use(app.authRequired)
+        mux.Get("/manage-catalog", app.ManageCatalog)
+    })
+    
     return mux
 }

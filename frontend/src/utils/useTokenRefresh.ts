@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentAccessToken } from "@src/features/auth/authSlice.ts";
 
 
-const REFRESH_INTERVAL = 15 * 60 * 1000;
+const REFRESH_INTERVAL = 10 * 60 * 1000;
 
 export const useTokenRefresh = () => {
     const accessToken = useSelector( selectCurrentAccessToken );
